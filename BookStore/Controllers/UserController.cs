@@ -1,10 +1,14 @@
-﻿using CommonLayer.RequestModel;
+﻿using CommonLayer;
+using CommonLayer.RequestModel;
 using CommonLayer.ResModel;
 using ManagerLayer.Interface;
+using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using RepositoryLayer.Context;
 using RepositoryLayer.Entity;
 using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace BookStore.Controllers
 {
@@ -15,11 +19,13 @@ namespace BookStore.Controllers
 
         private readonly IUserManager userManager;
         private readonly BookStoreContext context;
+        private readonly IBus _bus;
 
-        public UserController(IUserManager userManager, BookStoreContext context)
+        public UserController(IUserManager userManager, BookStoreContext context,IBus _bus)
         {
             this.userManager = userManager;
             this.context = context;
+            this._bus = _bus;
         }
 
         [HttpPost]
@@ -50,15 +56,42 @@ namespace BookStore.Controllers
                 var response = userManager.UserLogin(model);
                 if(response != null)
                 {
-                    return Ok(new ResModel<UserEntity> { Success = true, Message = "Login Sucessfull", Data = response });
+                    return Ok(new ResModel<string> { Success = true, Message = "Login Sucessfull", Data = response });
                 }
-                return BadRequest(new ResModel<UserEntity> { Success = false, Message = "Login Failed", Data = null });
+                return BadRequest(new ResModel<string> { Success = false, Message = "Login Failed", Data = null });
             }
             catch (Exception ex)
             {
-                return BadRequest(new ResModel<UserEntity>{ Success = false, Message = ex.Message });
+                return BadRequest(new ResModel<string>{ Success = false, Message = ex.Message });
             }
         }
+        [HttpPost]
+        [Route("ForgetPassword")]
+        public async Task<IActionResult> ForgetPassword(string Email)
+        {
+
+            send mail = new send();
+            ForgotPasswordModel model = userManager.ForgetPassword(Email);
+            var checkmail = context.UserTable.FirstOrDefault(x => x.EmailId == Email);
+            if (checkmail != null)
+            {
+                mail.SendMail(Email, model.Token);
+                Uri uri = new Uri("rabbitmq://localhost/ticketQueue");
+                var endPoint = await _bus.GetSendEndpoint(uri);
+                await endPoint.Send(model);
+                return Ok(new ResModel<String> { Success = true, Message = "Mail sent", Data = model.Token });
+     
+     
+            }
+            else
+            {
+                return BadRequest(new ResModel<String> { Success = false, Message = "not found", Data = null });
+            }
+        }
+
+
+
+
 
     }
 }

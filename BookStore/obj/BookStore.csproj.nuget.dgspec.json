@@ -28,9 +28,6 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\91767\\Desktop\\workspace\\FullStack\\Backend\\BookStore\\CommonLayer\\CommonLayer.csproj": {
-                "projectPath": "C:\\Users\\91767\\Desktop\\workspace\\FullStack\\Backend\\BookStore\\CommonLayer\\CommonLayer.csproj"
-              },
               "C:\\Users\\91767\\Desktop\\workspace\\FullStack\\Backend\\BookStore\\ManagerLayer\\ManagerLayer.csproj": {
                 "projectPath": "C:\\Users\\91767\\Desktop\\workspace\\FullStack\\Backend\\BookStore\\ManagerLayer\\ManagerLayer.csproj"
               },
@@ -50,6 +47,18 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "MassTransit": {
+              "target": "Package",
+              "version": "[6.2.5, )"
+            },
+            "MassTransit.AspNetCore": {
+              "target": "Package",
+              "version": "[6.2.5, )"
+            },
+            "MassTransit.RabbitMQ": {
+              "target": "Package",
+              "version": "[6.2.5, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[3.1.0, )"
@@ -71,6 +80,10 @@
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "Microsoft.Extensions.Caching.StackExchangeRedis": {
               "target": "Package",
               "version": "[3.1.0, )"
             },
@@ -257,6 +270,10 @@
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[3.1.0, )"
             },
