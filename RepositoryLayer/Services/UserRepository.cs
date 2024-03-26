@@ -92,7 +92,7 @@ namespace RepositoryLayer.Services
                 return forgotPassword;
             }
             else
-            {
+            {   
                 throw new Exception();
             }
         }

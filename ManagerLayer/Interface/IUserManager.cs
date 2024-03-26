@@ -12,6 +12,6 @@ namespace ManagerLayer.Interface
 
         public string UserLogin(loginModel model);
 
-        public ForgotPasswordModel ForgetPassword(string email);
+        public ForgotPasswordModel ForgetPassword(string email); 
     }
 }

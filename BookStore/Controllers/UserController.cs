@@ -72,7 +72,7 @@ namespace BookStore.Controllers
 
             send mail = new send();
             ForgotPasswordModel model = userManager.ForgetPassword(Email);
-            var checkmail = context.UserTable.FirstOrDefault(x => x.EmailId == Email);
+            var checkmail = context.UserTable.FirstOrDefault(x => x.EmailId == Email); 
             if (checkmail != null)
             {
                 mail.SendMail(Email, model.Token);

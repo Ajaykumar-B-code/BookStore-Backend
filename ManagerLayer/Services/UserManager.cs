@@ -26,7 +26,7 @@ namespace ManagerLayer.Services
         }
         public ForgotPasswordModel ForgetPassword(string email)
         {
-            return repository.ForgetPassword(email);
+            return repository.ForgetPassword(email); 
         }
     }
 }
