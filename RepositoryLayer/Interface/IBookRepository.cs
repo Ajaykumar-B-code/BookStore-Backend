@@ -17,6 +17,7 @@ namespace RepositoryLayer.Interface
 
         public List<BookEntity> SortByPrice();
         public List<BookEntity> SortByPriceDESC();
+        public List<BookEntity> Search(string query);
 
 
     }

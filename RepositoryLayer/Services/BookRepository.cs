@@ -27,6 +27,7 @@ namespace RepositoryLayer.Services
             book.BookQuantity = model.BookQuantity;
             book.price = model.price;
             book.DiscountPrice = model.DiscountPrice;
+            book.CreatedAt= DateTime.Now;
             Context.Add(book);
             Context.SaveChanges();
             return book;
@@ -56,5 +57,19 @@ namespace RepositoryLayer.Services
         {
             return Context.BookTable.OrderByDescending(x => x.DiscountPrice).ToList();
         }
+
+        public List<BookEntity> Search(string query)
+        {
+            List<BookEntity> response= Context.BookTable.Where(x=>(x.BookName==query)||(x.Author==query)).ToList();
+            if (response.Count > 0)
+            {
+                return response;
+            }
+            throw new Exception("No books Found");
+        }
+
+        
+
+
     }
 }

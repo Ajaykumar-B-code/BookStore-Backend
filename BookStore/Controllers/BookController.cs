@@ -92,7 +92,24 @@ namespace BookStore.Controllers
             }
             return BadRequest(new ResModel<List<BookEntity>> { Success = false, Message = "Notes Sorting Failed", Data = null });
         }
-
+        [HttpGet]
+        [Route("GetbySearch")]
+        public ActionResult GetbySearch(string query)
+        {
+            try
+            {
+                var response = manager.Search(query);
+                if (response != null)
+                {
+                    return Ok(new ResModel<List<BookEntity>> { Success = true, Message = "Get search result succesfully", Data = response });
+                }
+                return BadRequest(new ResModel<List<BookEntity>> { Success = false, Message = "Failed", Data = null });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new ResModel<string> { Success=false,Message=ex.Message});
+            }
+        }
     }
 }
 

@@ -19,7 +19,8 @@ namespace RepositoryLayer.Entity
         public string BookDescription { get; set; }
         public string BookImage {  get; set; }
         public int BookQuantity { get; set; }
-
+        public DateTime CreatedAt { get; set; }
+        public DateTime LastUpdatedAt { get; set;}
 
     }
 }

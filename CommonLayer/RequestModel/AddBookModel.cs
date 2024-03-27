@@ -12,5 +12,6 @@ namespace CommonLayer.RequestModel
         public int DiscountPrice { get; set; }
         public string BookDescription { get; set; }
         public int BookQuantity { get; set; }
+        public DateTime CreatedAt { get; set; }
     }
 }

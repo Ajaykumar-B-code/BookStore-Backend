@@ -19,5 +19,7 @@ namespace ManagerLayer.Interface
 
         public List<BookEntity> SortByPriceDESC();
 
+        public List<BookEntity> Search(string query);
+
     }
 }
