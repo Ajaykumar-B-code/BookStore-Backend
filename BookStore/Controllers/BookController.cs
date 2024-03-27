@@ -69,6 +69,18 @@ namespace BookStore.Controllers
             return BadRequest(new ResModel<List<BookEntity>> { Success = false, Message = " Books Displayed Failed", Data = null });
         }
 
+        [HttpGet]
+        [Route("SortBypriceASC")]
+
+        public ActionResult SortByPrice()
+        {
+            var response = manager.SortByPrice();
+            if(response != null)
+            {
+               return Ok(new ResModel<List<BookEntity>>{ Success = true, Message = "Notes Sorted Successfully", Data = response });
+            }
+            return BadRequest(new ResModel<List<BookEntity>> { Success = false,Message="Notes Sorting Failed",Data = null});
+        }
     }
 
 }

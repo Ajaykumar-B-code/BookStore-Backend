@@ -15,5 +15,16 @@ namespace RepositoryLayer.Interface
 
         public List<BookEntity> GetAllBook();
 
+        public List<BookEntity> SortByPrice();
+
     }
 }
+
+
+
+
+
+
+
+
+

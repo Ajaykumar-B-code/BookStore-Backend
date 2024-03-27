@@ -29,5 +29,18 @@ namespace ManagerLayer.Services
         {
             return repository.GetAllBook();
         }
+
+        public List<BookEntity> SortByPrice()
+        {
+            return repository.SortByPrice();    
+        }
+
+
+
+
+
+
+
+
     }
 }
