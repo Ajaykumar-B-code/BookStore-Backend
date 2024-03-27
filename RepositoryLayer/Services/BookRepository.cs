@@ -41,5 +41,10 @@ namespace RepositoryLayer.Services
             }
             throw new Exception("Book Not found");
         }
+
+        public List<BookEntity> GetAllBook()
+        {
+            return Context.BookTable.ToList();
+        }
     }
 }

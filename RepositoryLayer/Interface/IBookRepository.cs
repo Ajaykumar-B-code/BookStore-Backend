@@ -13,6 +13,7 @@ namespace RepositoryLayer.Interface
 
         public BookEntity GetBookById(int id);
 
-        //public List<BookEntity> GetAllBook();
+        public List<BookEntity> GetAllBook();
+
     }
 }

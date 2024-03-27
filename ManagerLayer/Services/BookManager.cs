@@ -25,9 +25,9 @@ namespace ManagerLayer.Services
             return repository.GetBookById(id);
         }
 
-        //public List<BookEntity> GetAllBook()
-        //{
-        //    return repository.GetAllBook();
-        //}
+        public List<BookEntity> GetAllBook()
+        {
+            return repository.GetAllBook();
+        }
     }
 }

@@ -57,5 +57,19 @@ namespace BookStore.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("GetAllBooks")]
+        public ActionResult GetAllBooks()
+        {
+            var response = manager.GetAllBook();
+            if (response != null)
+            {
+                return Ok(new ResModel<List<BookEntity>> { Success = true, Message = "Books Displayed", Data = response });
+            }
+            return BadRequest(new ResModel<List<BookEntity>> { Success = false, Message = " Books Displayed Failed", Data = null });
+        }
+
     }
+
 }
+
