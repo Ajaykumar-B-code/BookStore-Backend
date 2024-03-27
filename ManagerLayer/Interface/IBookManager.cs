@@ -23,5 +23,7 @@ namespace ManagerLayer.Interface
 
         public List<BookEntity> SortByArrivalASC();
 
+        public List<BookEntity> SortByArrivalDSC();
+
     }
 }

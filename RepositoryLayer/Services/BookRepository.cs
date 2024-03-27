@@ -73,6 +73,11 @@ namespace RepositoryLayer.Services
             return Context.BookTable.OrderBy(x => x.CreatedAt).ToList();
         }
 
+        public List<BookEntity> SortByArrivalDSC()
+        {
+            return Context.BookTable.OrderByDescending(x => x.CreatedAt).ToList();
+        }
+
 
     }
 }
