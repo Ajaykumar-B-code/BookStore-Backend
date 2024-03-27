@@ -8,6 +8,7 @@ namespace RepositoryLayer.Interface
 {
     public interface IBookRepository
     {
+
         public BookEntity AddBook(AddBookModel model);
 
         //public BookEntity GetBookByName(string name);

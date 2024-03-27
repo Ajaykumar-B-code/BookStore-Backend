@@ -8,6 +8,7 @@ namespace ManagerLayer.Interface
 {
     public interface IBookManager
     {
+
         public BookEntity AddBook(AddBookModel model);
 
         //public BookEntity GetBookByName(string name);

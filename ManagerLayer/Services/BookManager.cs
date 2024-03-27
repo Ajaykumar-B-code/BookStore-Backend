@@ -15,6 +15,7 @@ namespace ManagerLayer.Services
         {
             this.repository = repository;
         }
+
         public BookEntity AddBook(AddBookModel model)
         {
             return repository.AddBook(model);

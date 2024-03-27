@@ -9,6 +9,7 @@ using System.Collections.Generic;
 
 namespace BookStore.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class BookController : ControllerBase
@@ -21,6 +22,8 @@ namespace BookStore.Controllers
             this.manager = manager;
             this.context = context;
         }
+
+
 
         [HttpPost]
         [Route("Addbook")]
