@@ -110,6 +110,18 @@ namespace BookStore.Controllers
                 return BadRequest(new ResModel<string> { Success=false,Message=ex.Message});
             }
         }
+
+        [HttpGet]
+        [Route("sortByArrivalASC")]
+        public ActionResult SortByArrivalASC()
+        {
+            var response = manager.SortByArrivalASC();
+            if (response != null)
+            {
+                return Ok(new ResModel<List<BookEntity>> { Success = true, Message = "Notes Sorted Successfully", Data = response });
+            }
+            return BadRequest(new ResModel<List<BookEntity>> { Success = false, Message = "Notes Sorting Failed", Data = null });
+        }
     }
 }
 

@@ -45,7 +45,10 @@ namespace ManagerLayer.Services
         }
 
 
-
+        public List<BookEntity> SortByArrivalASC()
+        {
+            return repository.SortByArrivalASC();
+        }
 
 
 

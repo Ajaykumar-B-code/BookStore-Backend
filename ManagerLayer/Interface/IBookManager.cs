@@ -21,5 +21,7 @@ namespace ManagerLayer.Interface
 
         public List<BookEntity> Search(string query);
 
+        public List<BookEntity> SortByArrivalASC();
+
     }
 }

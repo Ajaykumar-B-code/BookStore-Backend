@@ -68,7 +68,10 @@ namespace RepositoryLayer.Services
             throw new Exception("No books Found");
         }
 
-        
+        public List<BookEntity> SortByArrivalASC()
+        {
+            return Context.BookTable.OrderBy(x => x.CreatedAt).ToList();
+        }
 
 
     }
