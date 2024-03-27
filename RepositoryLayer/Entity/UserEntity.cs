@@ -19,5 +19,7 @@ namespace RepositoryLayer.Entity
         public string Password {  get; set; }
 
         public string MobileNumber { get; set; }
+
+        public string Role {  get; set; }
     }
 }

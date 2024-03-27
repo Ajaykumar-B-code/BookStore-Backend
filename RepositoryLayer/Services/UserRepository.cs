@@ -96,5 +96,18 @@ namespace RepositoryLayer.Services
                 throw new Exception();
             }
         }
+        public bool UserResetPassword(string Email, resetPasswordModel model)
+        {
+            UserEntity user = context.UserTable.ToList().Find(x => x.EmailId == Email);
+
+            if (user != null)
+            {
+                user.Password = bcrypt.HashGenerator(model.New_Password);
+                context.SaveChanges();
+                return true;
+            }
+            return false;
+
+        }
     }
 }

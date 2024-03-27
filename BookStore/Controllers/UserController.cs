@@ -1,8 +1,10 @@
-﻿using CommonLayer;
+﻿using BCrypt.Net;
+using CommonLayer;
 using CommonLayer.RequestModel;
 using CommonLayer.ResModel;
 using ManagerLayer.Interface;
 using MassTransit;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RepositoryLayer.Context;
 using RepositoryLayer.Entity;
@@ -89,9 +91,25 @@ namespace BookStore.Controllers
             }
         }
 
-
-
-
+        [Authorize]
+        [HttpPut]
+        [Route("Reset")]
+        public ActionResult ForgetPassword(resetPasswordModel model)
+        {
+            try
+            {
+                string email = User.FindFirst("Email").Value;
+                if (userManager.UserResetPassword(email, model))
+                {
+                    return Ok(new ResModel<bool> { Success = true, Message = "Password Changed", Data = true });
+                }
+                return BadRequest(new ResModel<bool> { Success = false, Message = "Password not changed", Data = false });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new ResModel<bool> { Success = false, Message = ex.Message, });
+            }
+        }
 
     }
 }

@@ -13,7 +13,8 @@ namespace RepositoryLayer.Interface
 
         public string UserLogin(loginModel model);
 
-        public ForgotPasswordModel ForgetPassword(string email);  
+        public ForgotPasswordModel ForgetPassword(string email);
 
+        public bool UserResetPassword(string Email, resetPasswordModel model);
     }
 }
