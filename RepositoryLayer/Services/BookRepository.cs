@@ -31,5 +31,15 @@ namespace RepositoryLayer.Services
             Context.SaveChanges();
             return book;
         }
+
+        public BookEntity GetBookById(int id)
+        {
+            BookEntity book = Context.BookTable.FirstOrDefault(x => x.BookId == id);
+            if (book != null)
+            {
+                return book;
+            }
+            throw new Exception("Book Not found");
+        }
     }
 }

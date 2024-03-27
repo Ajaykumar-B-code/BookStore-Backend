@@ -37,7 +37,25 @@ namespace BookStore.Controllers
             return BadRequest(new ResModel<BookEntity> { Success = false, Message = "Book Adding failed", Data = null });
         }
 
-        
+
+        [HttpGet]
+        [Route("GetById")]
+        public ActionResult GetById(int id)
+        {
+            try
+            {
+                var response = manager.GetBookById(id);
+                if (response != null)
+                {
+                    return Ok(new ResModel<BookEntity> { Success = true, Message = "Book Fetched", Data = response });
+                }
+                return BadRequest(new ResModel<BookEntity> { Success = false, Message = "Book Fetching Failed", Data = null });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new ResModel<BookEntity> { Success = false, Message = ex.Message });
+            }
+        }
 
     }
 }

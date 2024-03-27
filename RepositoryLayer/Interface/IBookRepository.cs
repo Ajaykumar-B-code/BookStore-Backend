@@ -11,7 +11,7 @@ namespace RepositoryLayer.Interface
 
         public BookEntity AddBook(AddBookModel model);
 
-        //public BookEntity GetBookByName(string name);
+        public BookEntity GetBookById(int id);
 
         //public List<BookEntity> GetAllBook();
     }

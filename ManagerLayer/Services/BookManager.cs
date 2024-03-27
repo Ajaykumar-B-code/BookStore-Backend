@@ -20,10 +20,10 @@ namespace ManagerLayer.Services
         {
             return repository.AddBook(model);
         }
-        //public BookEntity GetBookByName(string name)
-        //{
-        //    return repository.GetBookByName(name); 
-        //}
+        public BookEntity GetBookById(int id)
+        {
+            return repository.GetBookById(id);
+        }
 
         //public List<BookEntity> GetAllBook()
         //{
