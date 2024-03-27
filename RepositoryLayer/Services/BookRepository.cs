@@ -52,6 +52,9 @@ namespace RepositoryLayer.Services
             return Context.BookTable.OrderBy(x=>x.DiscountPrice).ToList();
         }
 
-        
+        public List<BookEntity> SortByPriceDESC()
+        {
+            return Context.BookTable.OrderByDescending(x => x.DiscountPrice).ToList();
+        }
     }
 }

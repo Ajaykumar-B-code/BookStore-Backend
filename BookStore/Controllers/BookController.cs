@@ -30,9 +30,9 @@ namespace BookStore.Controllers
         public ActionResult AddBook(AddBookModel model)
         {
             var response = manager.AddBook(model);
-            if(response != null) 
-            { 
-                return Ok(new ResModel<BookEntity> { Success=true,Message="Book Added",Data = response });
+            if (response != null)
+            {
+                return Ok(new ResModel<BookEntity> { Success = true, Message = "Book Added", Data = response });
             }
             return BadRequest(new ResModel<BookEntity> { Success = false, Message = "Book Adding failed", Data = null });
         }
@@ -71,17 +71,28 @@ namespace BookStore.Controllers
 
         [HttpGet]
         [Route("SortBypriceASC")]
-
         public ActionResult SortByPrice()
         {
             var response = manager.SortByPrice();
-            if(response != null)
+            if (response != null)
             {
-               return Ok(new ResModel<List<BookEntity>>{ Success = true, Message = "Notes Sorted Successfully", Data = response });
+                return Ok(new ResModel<List<BookEntity>> { Success = true, Message = "Notes Sorted Successfully", Data = response });
             }
-            return BadRequest(new ResModel<List<BookEntity>> { Success = false,Message="Notes Sorting Failed",Data = null});
+            return BadRequest(new ResModel<List<BookEntity>> { Success = false, Message = "Notes Sorting Failed", Data = null });
         }
-    }
 
+        [HttpGet]
+        [Route("SortBypriceDSC")]
+        public ActionResult SortByPriceDesc()
+        {
+            var response = manager.SortByPriceDESC();
+            if (response != null)
+            {
+                return Ok(new ResModel<List<BookEntity>> { Success = true, Message = "Notes Sorted Successfully", Data = response });
+            }
+            return BadRequest(new ResModel<List<BookEntity>> { Success = false, Message = "Notes Sorting Failed", Data = null });
+        }
+
+    }
 }
 
