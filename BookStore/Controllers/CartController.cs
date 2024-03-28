@@ -40,25 +40,25 @@ namespace BookStore.Controllers
                 return BadRequest(new ResModel<CartEntity> { Success = false, Message = ex.Message });
             }
         }
-        //[Authorize]
-        //[HttpPut]
-        //[Route("RemoveFromCart")]
-        //public ActionResult RemoveFromCart(int Bookid)
-        //{
-        //    try
-        //    {
-        //        int userId = Convert.ToInt32(User.FindFirst("UserId").Value);
-        //        var response = manager.RemoveFromCart(userId, Bookid);
-        //        if (response != null)
-        //        {
-        //            return Ok(new ResModel<CartEntity> { Success = true, Message = "Cart Update", Data = response });
-        //        }
-        //        return BadRequest(new ResModel<CartEntity> { Success = false, Message = "Cart updation is failed", Data = response });
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return BadRequest(new ResModel<CartEntity> { Success = false, Message = ex.Message });
-        //    }
-        //}
+        [Authorize]
+        [HttpPut]
+        [Route("RemoveFromCart")]
+        public ActionResult RemoveFromCart(int Bookid)
+        {
+            try
+            {
+                int userId = Convert.ToInt32(User.FindFirst("UserId").Value);
+                var response = manager.RemoveFromCart(userId, Bookid);
+                if (response != null)
+                {
+                    return Ok(new ResModel<CartEntity> { Success = true, Message = "Cart Update", Data = response });
+                }
+                return BadRequest(new ResModel<CartEntity> { Success = false, Message = "Cart updation is failed", Data = response });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new ResModel<CartEntity> { Success = false, Message = ex.Message });
+            }
+        }
     }
 }

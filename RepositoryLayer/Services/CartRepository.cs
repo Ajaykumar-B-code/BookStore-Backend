@@ -41,27 +41,27 @@ namespace RepositoryLayer.Services
             }
         }
 
-        //public CartEntity RemoveFromCart(int Userid,int Bookid)
-        //{
-        //    CartEntity cart= context.AddToCartTable.FirstOrDefault(x=>x.UserId==Userid && x.BookId==Bookid);
-        //    if(cart!=null)
-        //    {
-        //        if (cart.Quantity > 1)
-        //        {
-        //            cart.Quantity -= 1;
-        //            context.SaveChanges();
-        //            return cart;
-        //        }
-        //        else if(cart.Quantity == 1)
-        //        {
-        //            context.AddToCartTable.Remove(cart);
-        //            context.SaveChanges();
-        //        }
-        //    }
-        //    throw new Exception("Book is not in the cart to remove");
-        //}
+        public CartEntity RemoveFromCart(int Userid, int Bookid)
+        {
+            CartEntity cart = context.AddToCartTable.FirstOrDefault(x => x.UserId == Userid && x.BookId == Bookid);
+            if (cart != null)
+            {
+                if (cart.Quantity > 1)
+                {
+                    cart.Quantity -= 1;
+                    context.SaveChanges();
+                    return cart;
+                }
+                else if (cart.Quantity == 1)
+                {
+                    context.AddToCartTable.Remove(cart);
+                    context.SaveChanges();
+                }
+            }
+            throw new Exception("Book is not in the cart to remove");
+        }
 
-        
+
     }
 }
    

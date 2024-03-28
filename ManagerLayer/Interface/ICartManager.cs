@@ -9,6 +9,6 @@ namespace ManagerLayer.Interface
     {
         public CartEntity AddToCart(int UserId, int BookId);
 
-        //public CartEntity RemoveFromCart(int Userid, int Bookid);
+        public CartEntity RemoveFromCart(int Userid, int Bookid);
     }
 }

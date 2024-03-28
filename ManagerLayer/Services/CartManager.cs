@@ -19,9 +19,9 @@ namespace ManagerLayer.Services
             return repository.AddToCart(UserId, BookId);
         }
 
-        //public CartEntity RemoveFromCart(int Userid, int Bookid)
-        //{
-        //    return repository.RemoveFromCart(Userid, Bookid);
-        //}
+        public CartEntity RemoveFromCart(int Userid, int Bookid)
+        {
+            return repository.RemoveFromCart(Userid, Bookid);
+        }
     }
 }
