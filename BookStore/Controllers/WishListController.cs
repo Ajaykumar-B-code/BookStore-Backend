@@ -19,6 +19,7 @@ namespace BookStore.Controllers
 
         [Authorize]
         [HttpPost]
+        [Route("AddToWishList")]
         public ActionResult AddToWishlist(int BookId)
         {
             try
@@ -34,6 +35,27 @@ namespace BookStore.Controllers
             catch (Exception ex)
             {
                 return BadRequest(new ResModel<WishListEntity> { Success=false,Message= ex.Message});
+            }
+        }
+
+        [Authorize]
+        [HttpDelete]
+        [Route("RemoveFromWishList")]
+        public ActionResult RemoveFromWishList(int BookId)
+        {
+            try
+            {
+                int userId = Convert.ToInt32(User.FindFirst("UserId").Value);
+                var response = manager.RemoveFromWishList(userId, BookId);
+                if (response != null)
+                {
+                    return Ok(new ResModel<WishListEntity> { Success = true, Message = "Removed From WishList", Data = response });
+                }
+                return BadRequest(new ResModel<WishListEntity> { Success = false, Message = "Removed From WishList Failed", Data = null });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new ResModel<WishListEntity> { Success = false, Message = ex.Message });
             }
         }
     }
