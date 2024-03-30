@@ -141,6 +141,28 @@ namespace RepositoryLayer.Migrations
                     b.ToTable("UserTable");
                 });
 
+            modelBuilder.Entity("RepositoryLayer.Entity.WishListEntity", b =>
+                {
+                    b.Property<int>("WishListId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("WishListId");
+
+                    b.HasIndex("BookId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("WishListTable");
+                });
+
             modelBuilder.Entity("RepositoryLayer.Entity.CartEntity", b =>
                 {
                     b.HasOne("RepositoryLayer.Entity.BookEntity", "BookTable")
@@ -157,6 +179,21 @@ namespace RepositoryLayer.Migrations
                 });
 
             modelBuilder.Entity("RepositoryLayer.Entity.FeedbackEntity", b =>
+                {
+                    b.HasOne("RepositoryLayer.Entity.BookEntity", "BookTable")
+                        .WithMany()
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RepositoryLayer.Entity.UserEntity", "UserTable")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("RepositoryLayer.Entity.WishListEntity", b =>
                 {
                     b.HasOne("RepositoryLayer.Entity.BookEntity", "BookTable")
                         .WithMany()

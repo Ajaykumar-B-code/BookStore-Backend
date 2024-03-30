@@ -1,4 +1,5 @@
-﻿using ManagerLayer.Interface;
+﻿using CommonLayer.RequestModel;
+using ManagerLayer.Interface;
 using RepositoryLayer.Entity;
 using RepositoryLayer.Interface;
 using System;
@@ -22,6 +23,20 @@ namespace ManagerLayer.Services
         public CartEntity RemoveFromCart(int Userid, int Bookid)
         {
             return repository.RemoveFromCart(Userid, Bookid);
+        }
+
+        public CartEntity RemoveDirctly(int Userid, int Bookid)
+        {
+            return repository.RemoveDirctly(Userid, Bookid);
+        }
+        public List<CartEntity> GetAll(int userId)
+        {
+            return repository.GetAll(userId);
+        }
+
+        public AddBookModel AddToCart2(int UserId, int BookId)
+        {
+            return repository.AddToCart2(UserId, BookId);
         }
     }
 }

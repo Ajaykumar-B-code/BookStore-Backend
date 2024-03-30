@@ -17,5 +17,7 @@ namespace RepositoryLayer.Context
         public DbSet<FeedbackEntity> FeedBackTable {  get; set; }
 
         public DbSet<CartEntity> AddToCartTable { get; set; }
+
+        public DbSet<WishListEntity> WishListTable {  get; set; }
     }
 }

@@ -7,6 +7,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20240328033131_feedback.cs" />
     <Compile Remove="Migrations\20240328033131_feedback.Designer.cs" />
+    <Compile Remove="Migrations\20240330022126_wishListTable.cs" />
+    <Compile Remove="Migrations\20240330022126_wishListTable.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
