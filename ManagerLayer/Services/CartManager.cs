@@ -29,14 +29,18 @@ namespace ManagerLayer.Services
         {
             return repository.RemoveDirctly(Userid, Bookid);
         }
-        public List<CartEntity> GetAll(int userId)
+        public List<CartEntity> GetAllCartItems(int userId)
         {
-            return repository.GetAll(userId);
+            return repository.GetAllCartItems(userId);
         }
 
-        public AddBookModel AddToCart2(int UserId, int BookId)
+        public List<CartEntity> PlaceOrder(int userId)
         {
-            return repository.AddToCart2(UserId, BookId);
+            return repository.PlaceOrder(userId);
         }
+        //public AddBookModel AddToCart2(int UserId, int BookId)
+        //{
+        //    return repository.AddToCart2(UserId, BookId);
+        //}
     }
 }

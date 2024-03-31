@@ -22,5 +22,9 @@ namespace ManagerLayer.Services
         {
             return repository.RemoveFromWishList(UserId, BookId);
         }
+        public List<WishListEntity> GetAllWishListNotes(int UserId)
+        {
+            return repository.GetAllWishListNotes(UserId);
+        }
     }
 }

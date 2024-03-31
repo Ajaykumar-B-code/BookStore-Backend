@@ -78,40 +78,61 @@ namespace RepositoryLayer.Services
             throw new Exception("Book is not there to remove directly");
 
         }
-        public List<CartEntity> GetAll(int userId)
+        public List<CartEntity> GetAllCartItems(int userId)
         {
-            List<CartEntity> list = context.AddToCartTable.Where(x=>x.UserId == userId).ToList();
-            return list;
+            List<CartEntity> list = context.AddToCartTable.Where(x=>(x.UserId == userId)&&(x.IsOrdered==false)).ToList();
+            if (list.Count > 0)
+            {
+                return list;
+            }
+            throw new Exception("There is no item in the cart");
         }
 
-        public AddBookModel AddToCart2(int UserId, int BookId)
+        public List<CartEntity> PlaceOrder(int userId)
         {
-            CartEntity cart = context.AddToCartTable.FirstOrDefault(x => (x.UserId == UserId) && (x.BookId == BookId));
-            BookEntity book = context.BookTable.FirstOrDefault(x => (x.BookId == BookId));
-            AddBookModel model = new AddBookModel();
-            if (cart == null)
+            List<CartEntity> list = context.AddToCartTable.Where(x => (x.UserId == userId)&&(x.IsOrdered==false)).ToList();
+            if (list.Count > 0)
             {
-                CartEntity newCart = new CartEntity();
-                model.Author = book.Author;
-                model.price = book.price;
-                newCart.UserId = UserId;
-                newCart.BookId = BookId;
-                newCart.Quantity = 1;
-                context.AddToCartTable.Add(newCart);
-                context.SaveChanges();
-                return model;
-            }
-            else
-            {
-                if (cart.Quantity <= 10)
+                foreach (CartEntity cart in list)
                 {
-                    cart.Quantity += 1;
+                    cart.IsOrdered = true;
+                    cart.OrderedDateTime = DateTime.Now;
+                    context.Update(cart);
                     context.SaveChanges();
-                    return model;
                 }
-                throw new Exception("Add to Cart limit Exceeded!");
+                return list;
             }
+            throw new Exception("There is no book in the cart to place order");
         }
+
+        //public AddBookModel AddToCart2(int UserId, int BookId)   
+        //{
+        //    CartEntity cart = context.AddToCartTable.FirstOrDefault(x => (x.UserId == UserId) && (x.BookId == BookId));
+        //    BookEntity book = context.BookTable.FirstOrDefault(x => (x.BookId == BookId));
+        //    AddBookModel model = new AddBookModel();
+        //    if (cart == null)
+        //    {
+        //        CartEntity newCart = new CartEntity();
+        //        model.Author = book.Author;
+        //        model.price = book.price;
+        //        newCart.UserId = UserId;
+        //        newCart.BookId = BookId;
+        //        newCart.Quantity = 1;
+        //        context.AddToCartTable.Add(newCart);
+        //        context.SaveChanges();
+        //        return model;
+        //    }
+        //    else
+        //    {
+        //        if (cart.Quantity <= 10)
+        //        {
+        //            cart.Quantity += 1;
+        //            context.SaveChanges();
+        //            return model;
+        //        }
+        //        throw new Exception("Add to Cart limit Exceeded!");
+        //    }
+        //}
 
     }
 

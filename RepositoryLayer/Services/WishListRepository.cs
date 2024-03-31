@@ -42,5 +42,11 @@ namespace RepositoryLayer.Services
             }
             throw new Exception("Book doesnot present in the wishList");
         }
+        
+        public List<WishListEntity> GetAllWishListNotes(int UserId)
+        {
+            List<WishListEntity> wishlist = context.WishListTable.Where(x => x.UserId == UserId).ToList();
+            return wishlist;
+        }
     }
 }

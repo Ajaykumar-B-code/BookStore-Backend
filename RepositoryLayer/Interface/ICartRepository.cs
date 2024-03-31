@@ -14,8 +14,10 @@ namespace RepositoryLayer.Interface
 
         public CartEntity RemoveDirctly(int Userid, int Bookid);
 
-        public List<CartEntity> GetAll(int userId);
+        public List<CartEntity> GetAllCartItems(int userId);
 
-        public AddBookModel AddToCart2(int UserId, int BookId);
+        public List<CartEntity> PlaceOrder(int userId);
+
+      //  public AddBookModel AddToCart2(int UserId, int BookId);
     }
 }

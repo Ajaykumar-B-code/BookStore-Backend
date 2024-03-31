@@ -10,7 +10,7 @@ namespace RepositoryLayer.Entity
 {
     public  class CartEntity
     {
-        [Key]   
+        [Key]
         public int CartId { get; set; }
 
         [ForeignKey("BookTable")]
@@ -22,6 +22,10 @@ namespace RepositoryLayer.Entity
         public int UserId { get; set; }
         [JsonIgnore]
         public UserEntity UserTable { get; set; }
+
+        public bool IsOrdered {  get; set; }
+
+        public DateTime OrderedDateTime { get; set; }
 
         public int Quantity {  get; set; }
 

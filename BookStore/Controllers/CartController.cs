@@ -89,35 +89,63 @@ namespace BookStore.Controllers
 
         public ActionResult GetAllBooksInCart()
         {
-            int userId = Convert.ToInt32(User.FindFirst("UserId").Value);
-            var response = manager.GetAll(userId);
-            if (response != null)
+            try
             {
-                return Ok(new ResModel<List<CartEntity>> { Success=true,Message="items in the cart are fetched",Data=response});
+                int userId = Convert.ToInt32(User.FindFirst("UserId").Value);
+                var response = manager.GetAllCartItems(userId);
+                if (response != null)
+                {
+                    return Ok(new ResModel<List<CartEntity>> { Success = true, Message = "items in the cart are fetched", Data = response });
+                }
+                return BadRequest(new ResModel<List<CartEntity>> { Success = true, Message = "fetching of books in cart failed", Data = response });
             }
-            return BadRequest(new ResModel<List<CartEntity>> { Success=true,Message="fetching of books in cart failed",Data = response});
+            catch(Exception ex)
+            {
+                return Ok(ex.Message);
+            }
         }
 
         [Authorize]
-        [HttpPost]
-        [Route("AddToCart2")]
-        public ActionResult AddToCart2(int Bookid)
+        [HttpPut]
+        [Route("PlaceOrder")]
+
+        public ActionResult PlaceOrder()
         {
             try
             {
-                int UserId = Convert.ToInt32(User.FindFirst("UserId").Value);
-                var response = manager.AddToCart2(UserId, Bookid);
+                int userId = Convert.ToInt32(User.FindFirst("UserId").Value);
+                var response = manager.PlaceOrder(userId);
                 if (response != null)
                 {
-                    return Ok(new ResModel<AddBookModel> { Success = true, Message = "Cart updated", Data = response });
+                    return Ok(new ResModel<List<CartEntity>> { Success = true, Message = "Order placed success", Data = response });
                 }
-                return BadRequest(new ResModel<AddBookModel> { Success = false, Message = "Cart updation is failed", Data = response });
+                return BadRequest(new ResModel<List<CartEntity>> { Success = false, Message = "Failed to place the order", Data = null });
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
-                return BadRequest(new ResModel<AddBookModel> { Success = false, Message = ex.Message });
+                return BadRequest(ex.Message);
             }
         }
+        //[Authorize]
+        //[HttpPost]
+        //[Route("AddToCart2")]
+        //public ActionResult AddToCart2(int Bookid)
+        //{
+        //    try
+        //    {
+        //        int UserId = Convert.ToInt32(User.FindFirst("UserId").Value);
+        //        var response = manager.AddToCart2(UserId, Bookid);
+        //        if (response != null)
+        //        {
+        //            return Ok(new ResModel<AddBookModel> { Success = true, Message = "Cart updated", Data = response });
+        //        }
+        //        return BadRequest(new ResModel<AddBookModel> { Success = false, Message = "Cart updation is failed", Data = response });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(new ResModel<AddBookModel> { Success = false, Message = ex.Message });
+        //    }
+        //}
 
 
     }

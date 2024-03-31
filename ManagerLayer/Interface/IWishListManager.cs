@@ -10,5 +10,7 @@ namespace ManagerLayer.Interface
         public WishListEntity AddToWishList(int UserId, int BookId);
 
         public WishListEntity RemoveFromWishList(int UserId, int BookId);
+
+        public List<WishListEntity> GetAllWishListNotes(int UserId);
     }
 }
